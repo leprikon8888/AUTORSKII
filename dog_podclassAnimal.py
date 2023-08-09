@@ -11,7 +11,7 @@ class Animal:
 
 
     def __str__(self):
-        return f'Animal: \n Age = {self.age}\n Ration = {self.ration}\n Color = {self.color}'
+        return f' Age = {self.age}\n Ration = {self.ration}\n Color = {self.color}'
 
 
 
@@ -27,7 +27,7 @@ class Cat(Animal):
         return 'MEOW!!!'
 
     def __str__(self):
-        return f'{super().__str__()}\n Name = {self.name}\n Cat_type = {self.cat_type}'
+        return f'Cat : \n{super().__str__()}\n Name = {self.name}\n Cat_type = {self.cat_type}'
 
 
 
@@ -39,18 +39,19 @@ class Dog(Animal):
         self.dog_type = dog_type
 
     def get_voice(self):
-        return "GAV!GAV!"
+        return ("GAV!GAV!")
 
     def __str__(self):
-        return f"{super().__str__()}\n Name = {self.name}\n Dog_type = {self.dog_type}"
+        return f"Dog : \n{super().__str__()}\n Name = {self.name}\n Dog_type = {self.dog_type}"
 
 
 bird = Animal(2, 'bread', 'black')
 print(bird)
 
 vaska = Cat(4, 'fish', 'white', "Vas`ka", 'home_cat')
+print(vaska)
 print(vaska.get_voice())
 
 sharik = Dog(6, 'meat', 'black', 'Sharik', 'hunter dog')
 print(sharik)
-print(sharik.get_voice())
+sharik.get_voice()
