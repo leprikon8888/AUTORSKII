@@ -69,7 +69,7 @@ gruppa_1.add_student(st_1)
 gruppa_1.add_student(st_5)
 gruppa_1.add_student(st_6)
 
-
+print (gruppa_1)
 
 
 
