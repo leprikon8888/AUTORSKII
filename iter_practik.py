@@ -20,8 +20,35 @@ class Garage:
 
 
     def __str__(self):
-        car_info = '\n'.join(str(car) for car in self.car_list)
-        return f"Garage {self.name_garage}, imeet takie ta4ki:\n{car_info}"
+        result = f"Garage {self.name_garage}: \n"
+        for car in self.car_list:
+            result+=str(car) + "\n"
+        return result
+
+
+
+    def __getitem__(self, index):
+        if isinstance(index, int):
+            if index>=0 and index<len(self.car_list):
+                return self.car_list[index]
+            else:
+                raise IndexError ('nepravilnui index')
+
+
+        # if isinstance(index, slice):
+        #     return self.car_list[slice]
+        # else:
+        #     raise  ValueError('vvedi 4toto korrektnoe')
+        # # index = 0
+        # if index<len(self.car_list):
+        #     return self.car_list[index]
+        #     index+=1
+        # else:
+        #     raise IndexError
+        # ...
+
+    def __len__(self):
+        ...
 
 
 jiga = Car('kopeika', 500)
@@ -32,4 +59,7 @@ alex_garage = Garage('Alex')
 alex_garage.add_car(jiga)
 alex_garage.add_car(opel)
 alex_garage.add_car(daewoo)
-print(alex_garage)
+alex_garage.add_car(jiga)
+alex_garage.add_car(opel)
+alex_garage.add_car(daewoo)
+print (alex_garage[:])
