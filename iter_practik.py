@@ -35,20 +35,29 @@ class Garage:
                 raise IndexError ('nepravilnui index')
 
 
-        # if isinstance(index, slice):
-        #     return self.car_list[slice]
+        if isinstance(index, slice):
+            start = 0 if index.start is None else index.start
+            stop = len(self.car_list) if index.stop is None else index.stop
+            step = 1 if index.step is None else index.step
+
+            temp_car_list = []
+            if start < 0 and stop >= len(self.car_list):
+                raise IndexError
+            for i in range(start, stop, step):
+                temp_car_list.append(self.car_list[i])
+            return temp_car_list
+
+
+
+
+
         # else:
-        #     raise  ValueError('vvedi 4toto korrektnoe')
-        # # index = 0
-        # if index<len(self.car_list):
-        #     return self.car_list[index]
-        #     index+=1
-        # else:
-        #     raise IndexError
-        # ...
+        #     raise TypeError
 
     def __len__(self):
-        ...
+        return  len(self.car_list)
+
+
 
 
 jiga = Car('kopeika', 500)
@@ -62,4 +71,8 @@ alex_garage.add_car(daewoo)
 alex_garage.add_car(jiga)
 alex_garage.add_car(opel)
 alex_garage.add_car(daewoo)
-print (alex_garage[:])
+
+
+cars = alex_garage[1:4]
+for i in cars:
+    print (i)
