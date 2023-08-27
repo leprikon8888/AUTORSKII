@@ -45,12 +45,13 @@ class Garage:
             if 0 <= index < len(self.car_list):
                 return self.car_list[index]
             else:
-                raise IndexError('nepravilnui index')
+                raise IndexError('error index')
 
         if isinstance(index, slice):
             start = 0 if index.start is None else index.start
             stop = len(self.car_list) if index.stop is None else index.stop
             step = 1 if index.step is None else index.step
+
 
             temp_car_list = []
             if start < 0 and stop >= len(self.car_list):
