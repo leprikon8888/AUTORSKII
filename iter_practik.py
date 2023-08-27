@@ -74,5 +74,7 @@ alex_garage.add_car(daewoo)
 
 
 cars = alex_garage[1:4]
+print("************************")
+print (cars)
 for i in cars:
     print (i)
