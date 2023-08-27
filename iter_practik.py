@@ -8,32 +8,44 @@ class Car:
         return f"Model - {self.model}, Price : {self.price}"
 
 
+class CarIterator:
+
+    def __init__(self, car_list):
+        self.car_list = car_list
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index >= len(self.car_list):
+            raise StopIteration
+        temp_car = self.car_list[self.index]
+        self.index += 1
+        return temp_car
+
+
 class Garage:
 
     def __init__(self, name_garage):
         self.name_garage = name_garage
         self.car_list = []
 
-
-    def add_car (self, car : Car):
+    def add_car(self, car: Car):
         self.car_list.append(car)
-
 
     def __str__(self):
         result = f"Garage {self.name_garage}: \n"
         for car in self.car_list:
-            result+=str(car) + "\n"
+            result += str(car) + "\n"
         return result
-
-
 
     def __getitem__(self, index):
         if isinstance(index, int):
-            if index>=0 and index<len(self.car_list):
+            if 0 <= index < len(self.car_list):
                 return self.car_list[index]
             else:
-                raise IndexError ('nepravilnui index')
-
+                raise IndexError('nepravilnui index')
 
         if isinstance(index, slice):
             start = 0 if index.start is None else index.start
@@ -47,17 +59,11 @@ class Garage:
                 temp_car_list.append(self.car_list[i])
             return temp_car_list
 
-
-
-
-
-        # else:
-        #     raise TypeError
-
     def __len__(self):
         return  len(self.car_list)
 
-
+    def __iter__(self):
+        return CarIterator(self.car_list)
 
 
 jiga = Car('kopeika', 500)
@@ -73,8 +79,11 @@ alex_garage.add_car(opel)
 alex_garage.add_car(daewoo)
 
 
-cars = alex_garage[1:4]
-print("************************")
-print (cars)
-for i in cars:
-    print (i)
+print('**************')
+y = alex_garage[:]
+for i in y:
+    print(i)
+print('**************')
+
+for i in alex_garage:
+    print(i)
